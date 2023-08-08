@@ -1,0 +1,60 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.11
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.cdc.osmh-indexer.cmm:
+      branch: main
+      repo: https://github.com/cessda/cessda.cdc.osmh-indexer.cmm.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.cdc.osmh-indexer.cmm git:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-viridian-fowl.sh
+        container: qc.acc_chewy-asparagus-rat
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.cdc.osmh-indexer.cmm find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.thirsty-carmine-frise.sh
+        container: qc.doc_sunny-scarlet-saola
+      github.com/cessda/cessda.cdc.osmh-indexer.cmm git:
+        commands:
+        - /usr/bin/env sh .sqa/script.greasy-red-centipede.sh
+        container: qc.doc_zippy-chestnut-hyena
+      github.com/cessda/cessda.cdc.osmh-indexer.cmm markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleepy-harlequin-tapir.sh
+        container: qc.doc_messy-gold-lemming
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.cdc.osmh-indexer.cmm licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.messy-carmine-havanese.sh
+        container: qc.lic_trippy-yellow-jackal
+  QC.Sty:
+    repos:
+      github.com/cessda/cessda.cdc.osmh-indexer.cmm checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.randy-ultramarine-eel.sh
+        container: qc.sty_whiny-viridian-coyote
+      github.com/cessda/cessda.cdc.osmh-indexer.cmm hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.gummy-magenta-capuchin.sh
+        container: qc.sty_foggy-jade-sloth
+      github.com/cessda/cessda.cdc.osmh-indexer.cmm jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-chestnut-moth.sh
+        container: qc.sty_ugly-lilac-dormouse
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.cdc.osmh-indexer.cmm get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.skanky-wisteria-cow.sh
+        container: qc.ver_foggy-olive-tzu
+timeout: 5400
